@@ -10,18 +10,18 @@ const getInstrutoresById = async (id) => {
     return result.rows[0];
 };
 
-const createInstrutor = async (name, email, photo) => {
+const createInstrutor = async (name, email, experiencia) => {
     const result = await pool.query(
-        "INSERT INTO instrutor (name, email, photo) VALUES ($1, $2) RETURNING *",
-        [name, email, photo]
+        "INSERT INTO instrutor (name, email, experiencia) VALUES ($1, $2, $3) RETURNING *",
+        [name, email, experiencia]
     );
     return result.rows[0];
 };
 
-const updateInstrutor = async (id, name, email, photo) => {
+const updateInstrutor = async (id, name, email, experiencia) => {
     const result = await pool.query(
-        "UPDATE instrutor SET name = $1, email = $2, photo = $3 WHERE id = $4 RETURNING *",
-        [name, email, photo, id]
+        "UPDATE instrutor SET name = $1, email = $2, experiencia = $3 WHERE id = $4 RETURNING *",
+        [name, email, experiencia, id]
     );
     return result.rows[0];
 };

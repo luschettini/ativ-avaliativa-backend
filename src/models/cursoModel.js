@@ -20,9 +20,9 @@ const getCursosById = async (id) => {
 };
 
 
-const createCurso = async (name, descricao, instrutor_id) => {
+const createCurso = async (name, descricao, instrutor_id, photo) => {
     const result = await pool.query(`
-        INSERT INTO curso (name, descricao, instrutor_id) VALUES ($1, $2, $3) RETURNING *`, [name, descricao, instrutor_id]);
+        INSERT INTO curso (name, descricao, instrutor_id, photo) VALUES ($1, $2, $3, $4) RETURNING *`, [name, descricao, instrutor_id, photo]);
     return result.rows[0];
 };
 
