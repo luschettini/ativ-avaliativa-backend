@@ -24,14 +24,16 @@ const getCursoById = async (req, res) => {
 
 const createCurso = async (req, res) => {
     try {
-        const { name, descricao } = req.body;
-        const curso = await CursoModel.createCurso(name, descricao);
+        const { name, descricao, instrutor_id } = req.body;
+        if (!name || !descricao || !instrutor_id) {
+            return res.status(400).json({ message: "Preencha todos os campos obrigatórios." });
+        }
+        const curso = await CursoModel.createCurso(name, descricao, instrutor_id);
         res.status(201).json(curso);
     } catch (error) {
         res.status(500).json({ message: "Erro ao criar o Curso." });
     }
 }
-
 
 const updateCurso= async (req, res) => {
     try {
